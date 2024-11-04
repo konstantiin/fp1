@@ -1,0 +1,7 @@
+(executable
+ (public_name task9)
+ (name task9))
+
+(executable
+ (public_name task22)
+ (name task22))
