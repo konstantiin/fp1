@@ -1,3 +1,7 @@
+# Лабораторная работа №1. Лучинкин Константин
+## Задача №9
+Код:    
+```ocaml
 (*tail recursion realization*)
 let rec broot_force_tr a b =
   let c = 1000 - a - b in
@@ -47,3 +51,13 @@ let rec broot_force a b =
   if c * c = (a * a) + (b * b) then a * b * c else ans
 
 let _ = broot_force 1 1 |> string_of_int |> print_endline
+```
+Результат:
+```powershell
+~/fp/lab1$ dune build
+~/fp/lab1$ dune exec bin/task9.exe
+31875000
+31875000
+31875000
+Fatal error: exception Stack_overflow
+```
