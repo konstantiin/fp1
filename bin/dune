@@ -4,4 +4,5 @@
 
 (executable
  (public_name task22)
+ (libraries str)
  (name task22))
