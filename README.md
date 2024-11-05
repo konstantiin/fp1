@@ -1,6 +1,6 @@
 # Лабораторная работа №1. Лучинкин Константин
 ## Задача №9
-<p>A Pythagorean triplet is a set of three natural numbers, $a \lt b \lt c$, for which,
+<p>A Pythagorean triplet is a set of three natural numbers, $x`a \lt b \lt c$, for which,
 $$a^2 + b^2 = c^2.$$</p>
 <p>For example, $3^2 + 4^2 = 9 + 16 = 25 = 5^2$.</p>
 <p>There exists exactly one Pythagorean triplet for which $a + b + c = 1000$.<br>Find the product $abc$.</p>
@@ -65,4 +65,66 @@ let _ = broot_force 1 1 |> string_of_int |> print_endline
 31875000
 31875000
 Fatal error: exception Stack_overflow
+```
+## Задача №22
+<p>Using <a href="resources/documents/0022_names.txt">names.txt</a> (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.</p>
+<p>For example, when the list is sorted into alphabetical order, COLIN, which is worth $3 + 15 + 12 + 9 + 14 = 53$, is the $938$th name in the list. So, COLIN would obtain a score of $938 \times 53 = 49714$.</p>
+<p>What is the total of all the name scores in the file?</p>
+
+Код:    
+```ocaml
+let names =
+  let file = "0022_names.txt" in
+  let ifile = open_in file in
+  ifile |> input_line
+  |> Str.global_replace (Str.regexp "\"") ""
+  |> Str.split (Str.regexp ",")
+
+let sorted_names = List.sort String.compare names
+
+(* tail recursive *)
+let rec get_sum acc idx = function
+  | [] -> acc
+  | h :: t ->
+      let get_val str =
+        String.fold_left
+          (fun acc c -> acc + (Char.code c - Char.code 'A'))
+          0 str
+      in
+      get_sum (acc + (get_val h * idx)) (idx + 1) t
+
+let _ = sorted_names |> get_sum 0 1 |> string_of_int |> print_endline
+
+(* not tail recursive *)
+let rec get_sum_noacc idx = function
+  | [] -> 0
+  | h :: t ->
+      let get_val str =
+        String.fold_left
+          (fun acc c -> acc + (Char.code c - Char.code 'A'))
+          0 str
+      in
+      (get_val h * idx) + get_sum_noacc (idx + 1) t
+
+let _ = sorted_names |> get_sum_noacc 1 |> string_of_int |> print_endline
+
+(* use of map *)
+let _ =
+  sorted_names
+  |> List.mapi (fun idx str ->
+         (idx + 1)
+         * String.fold_left
+             (fun acc c -> acc + (Char.code c - Char.code 'A'))
+             0 str)
+  |> List.fold_left (fun acc x -> acc + x) 0
+  |> string_of_int |> print_endline
+
+```
+Результат:
+```powershell
+~/fp/lab1$ dune build
+~/fp/lab1$ dune exec bin/task22.exe
+792134121
+792134121
+792134121
 ```
