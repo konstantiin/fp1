@@ -7,18 +7,13 @@
 (source
  (github username/reponame))
 
-(authors "Author Name")
+(authors "konstantiin")
 
-(maintainers "Maintainer Name")
+(maintainers "konstantiin")
 
-(license LICENSE)
-
-(documentation https://url/to/documentation)
 
 (package
  (name lab1)
- (synopsis "A short synopsis")
- (description "A longer description")
  (depends ocaml dune)
  (tags
   (topics "to describe" your project)))
