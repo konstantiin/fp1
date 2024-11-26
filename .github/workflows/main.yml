@@ -55,4 +55,5 @@ jobs:
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
       
-      - run: opam install zanuda.1.0.0 -y
+      - name: Lint
+        run: opam install zanuda.1.0.0 -y
