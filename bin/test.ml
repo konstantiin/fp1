@@ -20,7 +20,7 @@ let task22_tests =
          ("map" >:: fun _ -> assert_equal task22_true (Task22.solve_map ()));
          ("tail rec" >:: fun _ -> assert_equal task22_true (Task22.solve_tl ()));
          ( "not tail rec" >:: fun _ ->
-           assert_equal (task22_true + 1) (Task22.solve_ntl ()) );
+           assert_equal task22_true (Task22.solve_ntl ()) );
        ]
 
 let _ = Task9.print_forloop ()
