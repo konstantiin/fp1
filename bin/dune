@@ -1,31 +1,4 @@
 (executable
- (public_name tail_rec9)
- (name tail_rec9))
-
-(executable
- (public_name rec9)
- (name rec9))
- 
-(executable
- (public_name filter9)
- (name filter9))
-
-(executable
- (public_name for9)
- (name for9))
-
-
-(executable
- (public_name map22)
- (libraries str)
- (name map22))
-
-(executable
- (public_name rec22)
- (libraries str)
- (name rec22))
-
-(executable
- (public_name tail_rec22)
- (libraries str)
- (name tail_rec22))
+ (public_name test)
+ (name test)
+ (libraries ounit2 str))
