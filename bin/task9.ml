@@ -44,4 +44,16 @@ module Task9 = struct
     else broot_force_tr a (b + 1)
 
   let solve_tl () = broot_force_tr 1 1
+
+  (* infinite sequences *)
+  let solve_seq () =
+    let nat_nums = Seq.iterate (fun x -> x + 1) 1 in
+    let pairs = Seq.product nat_nums nat_nums in
+    let f (a, b) =
+      let c = 1000 - a - b in
+      if c * c = (a * a) + (b * b) then Some (a * b * c) else None
+    in
+    match Seq.uncons (Seq.filter_map f pairs) with
+    | None -> -1
+    | Some (a, _) -> a
 end

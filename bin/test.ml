@@ -12,6 +12,7 @@ let task9_tests =
          ("tail rec" >:: fun _ -> assert_equal task9_true (Task9.solve_tl ()));
          ( "not tail rec" >:: fun _ ->
            assert_raises Stack_overflow (fun _ -> Task9.solve_notl ()) );
+         ("inf seq" >:: fun _ -> assert_equal task9_true (Task9.solve_seq ()));
        ]
 
 let task22_tests =
